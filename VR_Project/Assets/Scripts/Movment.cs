@@ -44,7 +44,7 @@ public class Movment : MonoBehaviour
 
 
         Pointer();
-        if(podeSeguir == true && maiorQoQuebraGalho == true)
+        if(podeSeguir == true) /*&& maiorQoQuebraGalho == true)*/
         {
             SeguirBarquinho();
         }
@@ -93,7 +93,7 @@ public class Movment : MonoBehaviour
                     fill.fillAmount += 0.33f * Time.deltaTime;
                 }
 
-                GetComponent<Animator>().enabled = true;
+               // GetComponent<Animator>().enabled = true;
                 podeSeguir = true;
             }
         }
@@ -110,7 +110,7 @@ public class Movment : MonoBehaviour
 
     void SeguirBarquinho()
     {
-        GetComponent<Animator>().enabled = false;
+        //GetComponent<Animator>().enabled = false;
         posicao.x = bote.position.x;
         posicao.z = bote.position.z;
         posicao.y = transform.position.y;
