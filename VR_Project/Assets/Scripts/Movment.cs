@@ -14,25 +14,41 @@ public class Movment : MonoBehaviour
     public Transform bote;
     public Vector3 posicao;
 
-    bool podeSeguir;
+    public GameObject quebraGalho;
+
+    bool podeSeguir, maiorQoQuebraGalho, setouVisao;
 
     // Start is called before the first frame update
     void Start()
     {
         pokelist.poke.Clear();
         podeSeguir = false;
+        maiorQoQuebraGalho = false;
+        setouVisao = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-      // Move();
+        // Move();
+      //if(!maiorQoQuebraGalho)
+      //{
+            if (transform.position.x < quebraGalho.transform.position.x)
+            {
+
+                //transform.rotation = new Quaternion(0, -220, 0, 0);
+                maiorQoQuebraGalho = true;
+            }
+
+    //  }
+
 
         Pointer();
-        if(podeSeguir == true)
+        if(podeSeguir == true && maiorQoQuebraGalho == true)
         {
             SeguirBarquinho();
         }
+
     }
 
 
@@ -71,6 +87,13 @@ public class Movment : MonoBehaviour
 
             if (hit.collider.gameObject.tag == "IniciarGame")
             {
+             
+                foreach (Image fill in images)
+                {
+                    fill.fillAmount += 0.33f * Time.deltaTime;
+                }
+
+                GetComponent<Animator>().enabled = true;
                 podeSeguir = true;
             }
         }
@@ -87,6 +110,7 @@ public class Movment : MonoBehaviour
 
     void SeguirBarquinho()
     {
+        GetComponent<Animator>().enabled = false;
         posicao.x = bote.position.x;
         posicao.z = bote.position.z;
         posicao.y = transform.position.y;
