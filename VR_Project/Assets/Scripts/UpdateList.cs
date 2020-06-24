@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UpdateList : MonoBehaviour
@@ -11,6 +12,8 @@ public class UpdateList : MonoBehaviour
     public Pokelist poke;
     private string a;
     private float x;
+    public Image pizza;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +32,8 @@ public class UpdateList : MonoBehaviour
         lista.text = a;
 
         x = ( (float) poke.poke.Count /(float) poke.maxPoke ) * 100.0f;
+
+        pizza.fillAmount = (float)poke.poke.Count / (float)poke.maxPoke;
 
         Debug.Log(x);
 
