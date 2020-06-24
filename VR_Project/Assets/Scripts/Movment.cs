@@ -62,6 +62,7 @@ public class Movment : MonoBehaviour
                     if (!pokelist.poke.Contains(hit.collider.gameObject.name))
                     {
                         pokelist.poke.Add(hit.collider.gameObject.name);
+                        hit.collider.gameObject.GetComponent<CryBaby>().LancaOcry();
                     }
                 }
 
