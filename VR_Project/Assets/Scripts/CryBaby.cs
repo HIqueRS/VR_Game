@@ -9,7 +9,7 @@ public class CryBaby : MonoBehaviour
     // Start is called before the first frame update
    
 
-    public void LancoOcry()
+    public void LancaOcry()
     {
         cry.Play();
     }
