@@ -10,12 +10,14 @@ public class Movment : MonoBehaviour
     Vector3 dir;
     public float speed;
     RaycastHit hit;
-    public Image fill;
+    public Image[] images;
+    public Pokelist pokelist;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        pokelist.poke.Clear();
+
     }
 
     // Update is called once per frame
@@ -41,9 +43,37 @@ public class Movment : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
              if(hit.collider.gameObject.tag == "Interactable")
-             {
-                Destroy(hit.collider.gameObject);
+             {               
+               
+                
+                foreach (Image fill in images)
+                {
+                    fill.fillAmount +=  0.33f*Time.deltaTime;
+                }
+
+                if (images[0].fillAmount >= 1)
+                {
+                    if (!pokelist.poke.Contains(hit.collider.gameObject.name))
+                    {
+                        pokelist.poke.Add(hit.collider.gameObject.name);
+                    }
+                }
+
              }
+             else
+             {
+                foreach (Image fill in images)
+                {
+                    fill.fillAmount = 0;
+                }
+            }
+        }
+        else
+        {
+            foreach (Image fill in images)
+            {
+                fill.fillAmount = 0;
+            }
         }
         Debug.DrawLine(transform.position, hit.point);
     }
