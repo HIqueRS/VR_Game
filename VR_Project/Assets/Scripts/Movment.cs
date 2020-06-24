@@ -16,7 +16,7 @@ public class Movment : MonoBehaviour
 
     public GameObject quebraGalho;
 
-    bool podeSeguir, maiorQoQuebraGalho;
+    bool podeSeguir, maiorQoQuebraGalho, setouVisao;
 
     // Start is called before the first frame update
     void Start()
@@ -24,22 +24,31 @@ public class Movment : MonoBehaviour
         pokelist.poke.Clear();
         podeSeguir = false;
         maiorQoQuebraGalho = false;
+        setouVisao = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-      // Move();
-      if(transform.position.x < quebraGalho.transform.position.x)
-        {
-            maiorQoQuebraGalho = true;
-        }
+        // Move();
+      //if(!maiorQoQuebraGalho)
+      //{
+            if (transform.position.x < quebraGalho.transform.position.x)
+            {
+
+                //transform.rotation = new Quaternion(0, -220, 0, 0);
+                maiorQoQuebraGalho = true;
+            }
+
+    //  }
+
 
         Pointer();
         if(podeSeguir == true && maiorQoQuebraGalho == true)
         {
             SeguirBarquinho();
         }
+
     }
 
 
