@@ -5,7 +5,7 @@ using UnityEngine;
 public class Barquinho : MonoBehaviour
 {
     CharacterController CC;
-    public float vel = 3;
+    public float vel;
     public float distance_ate_o_proximo_ponto;
     public Vector3 movimento;
 
@@ -28,12 +28,12 @@ public class Barquinho : MonoBehaviour
         {
             progresso++;
         }
-        movimento.z = 0;
-        movimento.x = vel * Time.deltaTime;
+        movimento.z = vel * Time.deltaTime;
+        movimento.x = 0;
 
         transform.LookAt(pontos[progresso].transform.position);
 
 
-        CC.Move(transform.forward * Time.deltaTime);
+        CC.Move(transform.forward * Time.deltaTime * vel);
     }
 }
