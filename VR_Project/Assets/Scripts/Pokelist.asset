@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc62d98b68501f449bff1a0822f5ea9, type: 3}
   m_Name: Pokelist
   m_EditorClassIdentifier: 
-  poke: []
-  maxPoke: 0
+  poke:
+  - Espeon
+  - Flareon
+  - Glaceon
+  - Jolteon
+  - JolteonP
+  - Vaporeon
+  - Umbreon
+  maxPoke: 10
