@@ -6,18 +6,21 @@ using UnityEngine.UI;
 
 public class Movment : MonoBehaviour
 {
-    
     Vector3 dir;
-    public float speed;
     RaycastHit hit;
     public Image[] images;
     public Pokelist pokelist;
+
+    public Transform bote;
+    public Vector3 posicao;
+
+    bool podeSeguir;
 
     // Start is called before the first frame update
     void Start()
     {
         pokelist.poke.Clear();
-
+        podeSeguir = false;
     }
 
     // Update is called once per frame
@@ -26,16 +29,12 @@ public class Movment : MonoBehaviour
       // Move();
 
         Pointer();
-        //transform.position += transform.forward *Time.deltaTime;
+        if(podeSeguir == true)
+        {
+            SeguirBarquinho();
+        }
     }
 
-    void Move()
-    {
-        dir = Input.GetAxisRaw("Horizontal") * transform.right;
-        dir += Input.GetAxisRaw("Vertical") * transform.forward;
-        transform.position += dir *Time.deltaTime * speed ;
-        //transform.Translate(dir);
-    }
 
     void Pointer()
     {
@@ -67,6 +66,12 @@ public class Movment : MonoBehaviour
                     fill.fillAmount = 0;
                 }
             }
+
+
+            if (hit.collider.gameObject.tag == "IniciarGame")
+            {
+                podeSeguir = true;
+            }
         }
         else
         {
@@ -75,6 +80,16 @@ public class Movment : MonoBehaviour
                 fill.fillAmount = 0;
             }
         }
+
         Debug.DrawLine(transform.position, hit.point);
+    }
+
+    void SeguirBarquinho()
+    {
+        posicao.x = bote.position.x;
+        posicao.z = bote.position.z;
+        posicao.y = transform.position.y;
+
+        gameObject.transform.position = posicao;
     }
 }
