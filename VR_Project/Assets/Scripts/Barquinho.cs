@@ -31,7 +31,7 @@ public class Barquinho : MonoBehaviour
             possoAndar = true;
         }
 
-        if(possoAndar == true)
+        if(possoAndar == true && progresso != 8)
         {
             distance_ate_o_proximo_ponto = Vector3.Distance(gameObject.transform.position, pontos[progresso].transform.position);
 

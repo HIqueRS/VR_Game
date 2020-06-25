@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Movment : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class Movment : MonoBehaviour
     void Start()
     {
         pokelist.poke.Clear();
-        podeSeguir = false;
+        podeSeguir = true;
         maiorQoQuebraGalho = false;
         setouVisao = false;
     }
@@ -31,20 +32,20 @@ public class Movment : MonoBehaviour
     void Update()
     {
         // Move();
-      //if(!maiorQoQuebraGalho)
-      //{
-            if (transform.position.x < quebraGalho.transform.position.x)
-            {
+        //if(!maiorQoQuebraGalho)
+        //{
+        if (transform.position.x < quebraGalho.transform.position.x)
+        {
 
-                //transform.rotation = new Quaternion(0, -220, 0, 0);
-                maiorQoQuebraGalho = true;
-            }
+            //transform.rotation = new Quaternion(0, -220, 0, 0);
+            maiorQoQuebraGalho = true;
+        }
 
-    //  }
+        //  }
 
 
         Pointer();
-        if(podeSeguir == true) /*&& maiorQoQuebraGalho == true)*/
+        if (podeSeguir == true) /*&& maiorQoQuebraGalho == true)*/
         {
             SeguirBarquinho();
         }
@@ -57,13 +58,13 @@ public class Movment : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
-             if(hit.collider.gameObject.tag == "Interactable")
-             {               
-               
-                
+            if (hit.collider.gameObject.tag == "Interactable")
+            {
+
+
                 foreach (Image fill in images)
                 {
-                    fill.fillAmount +=  0.33f*Time.deltaTime;
+                    fill.fillAmount += 0.33f * Time.deltaTime;
                 }
 
                 if (images[0].fillAmount >= 1)
@@ -75,37 +76,46 @@ public class Movment : MonoBehaviour
                     }
                 }
 
-             }
-             else
-             {
+            }
+
+
+
+            //if (hit.collider.gameObject.tag == "IniciarGame")
+            //{
+
+            //    foreach (Image fill in images)
+            //    {
+            //        fill.fillAmount += 0.33f * Time.deltaTime;
+            //    }
+
+            //   // GetComponent<Animator>().enabled = true;
+            //    podeSeguir = true;
+            //}
+
+            if (hit.collider.gameObject.tag == "Restart")
+            {
+
+                foreach (Image fill in images)
+                {
+                    fill.fillAmount += 0.33f * Time.deltaTime;
+                }
+                if (images[0].fillAmount >= 1)
+                {
+                    SceneManager.LoadScene("Menuzim");
+                }
+
+
+            }
+            else
+            {
                 foreach (Image fill in images)
                 {
                     fill.fillAmount = 0;
                 }
             }
 
-
-            if (hit.collider.gameObject.tag == "IniciarGame")
-            {
-             
-                foreach (Image fill in images)
-                {
-                    fill.fillAmount += 0.33f * Time.deltaTime;
-                }
-
-               // GetComponent<Animator>().enabled = true;
-                podeSeguir = true;
-            }
+            Debug.DrawLine(transform.position, hit.point);
         }
-        else
-        {
-            foreach (Image fill in images)
-            {
-                fill.fillAmount = 0;
-            }
-        }
-
-        Debug.DrawLine(transform.position, hit.point);
     }
 
     void SeguirBarquinho()
@@ -117,4 +127,5 @@ public class Movment : MonoBehaviour
 
         gameObject.transform.position = posicao;
     }
+
 }

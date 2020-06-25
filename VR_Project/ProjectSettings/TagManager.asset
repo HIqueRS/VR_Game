@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactable
   - IniciarGame
+  - Restart
   layers:
   - Default
   - TransparentFX
