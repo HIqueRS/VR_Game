@@ -64,7 +64,7 @@ public class Movment : MonoBehaviour
 
                 foreach (Image fill in images)
                 {
-                    fill.fillAmount += 0.33f * Time.deltaTime;
+                    fill.fillAmount += 1f/2.5f * Time.deltaTime;
                 }
 
                 if (images[0].fillAmount >= 1)
@@ -98,7 +98,7 @@ public class Movment : MonoBehaviour
 
                 foreach (Image fill in images)
                 {
-                    fill.fillAmount += 0.33f * Time.deltaTime;
+                    fill.fillAmount += 1f / 2.5f * Time.deltaTime;
                 }
                 if (images[0].fillAmount >= 1)
                 {
