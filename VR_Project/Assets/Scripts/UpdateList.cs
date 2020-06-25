@@ -35,7 +35,7 @@ public class UpdateList : MonoBehaviour
 
         pizza.fillAmount = (float)poke.poke.Count / (float)poke.maxPoke;
 
-        Debug.Log(x);
+        //Debug.Log(x);
 
         porcentagem.text = x.ToString() + "%";
     }

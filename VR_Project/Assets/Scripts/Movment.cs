@@ -34,21 +34,21 @@ public class Movment : MonoBehaviour
         // Move();
         //if(!maiorQoQuebraGalho)
         //{
-        if (transform.position.x < quebraGalho.transform.position.x)
-        {
+        //if (transform.position.x < quebraGalho.transform.position.x)
+        //{
 
-            //transform.rotation = new Quaternion(0, -220, 0, 0);
-            maiorQoQuebraGalho = true;
-        }
+        //    //transform.rotation = new Quaternion(0, -220, 0, 0);
+        //    maiorQoQuebraGalho = true;
+        //}
 
         //  }
 
 
         Pointer();
-        if (podeSeguir == true) /*&& maiorQoQuebraGalho == true)*/
-        {
-            SeguirBarquinho();
-        }
+        //if (podeSeguir == true) /*&& maiorQoQuebraGalho == true)*/
+        //{
+        //    SeguirBarquinho();
+        //}
 
     }
 
@@ -60,7 +60,7 @@ public class Movment : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "Interactable")
             {
-
+                Debug.Log(images[0].fillAmount);
 
                 foreach (Image fill in images)
                 {
@@ -76,8 +76,9 @@ public class Movment : MonoBehaviour
                     }
                 }
 
-            }
 
+            }
+            
 
 
             //if (hit.collider.gameObject.tag == "IniciarGame")
@@ -106,15 +107,24 @@ public class Movment : MonoBehaviour
 
 
             }
-            else
+
+            if(! (hit.collider.gameObject.tag == "Restart" || hit.collider.gameObject.tag == "Interactable"))
             {
                 foreach (Image fill in images)
                 {
                     fill.fillAmount = 0;
                 }
             }
+           
 
             Debug.DrawLine(transform.position, hit.point);
+        }
+        else
+        {
+            foreach (Image fill in images)
+            {
+                fill.fillAmount = 0;
+            }
         }
     }
 

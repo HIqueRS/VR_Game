@@ -14,22 +14,23 @@ public class Barquinho : MonoBehaviour
     public GameObject[] pontos;
 
 
-    public GameObject camera;
+    //public GameObject camera;
     // Start is called before the first frame update
     void Start()
     {
         progresso = 0;
         CC = GetComponent<CharacterController>();
+        possoAndar = true;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if(camera.transform.position.x == transform.position.x && camera.transform.position.z == transform.position.z)
-        {
-            possoAndar = true;
-        }
+        //if(camera.transform.position.x == transform.position.x && camera.transform.position.z == transform.position.z)
+        //{
+        //    possoAndar = true;
+        //}
 
         if(possoAndar == true && progresso != 8)
         {
